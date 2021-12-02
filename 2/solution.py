@@ -4,14 +4,17 @@ data = [x.split() for x in open('input.txt').readlines()]
 x = 0
 y = 0
 for cell in data:
-    if cell[0] == 'forward':
-        x += int(cell[1])
-    if cell[0] == 'back':
-        x -= int(cell[1])
-    if cell[0] == 'up':
-        y -= int(cell[1])
-    if cell[0] == 'down':
-        y += int(cell[1])
+    d = cell[0]
+    v = int(cell[1])
+
+    if d == 'forward':
+        x += v
+    if d == 'back':
+        x -= v
+    if d == 'up':
+        y -= v
+    if d == 'down':
+        y += v
 
 print(x)
 print(y)
@@ -22,13 +25,16 @@ x = 0
 y = 0
 aim = 0
 for cell in data:
-    if cell[0] == 'forward':
-        x += int(cell[1])
-        y += aim * int(cell[1])
-    if cell[0] == 'up':
-        aim -= int(cell[1])
-    if cell[0] == 'down':
-        aim += int(cell[1])
+    d = cell[0]
+    v = int(cell[1])
+
+    if d == 'forward':
+        x += v
+        y += aim * v
+    if d == 'up':
+        aim -= v
+    if d == 'down':
+        aim += v
 
 print(x)
 print(y)
