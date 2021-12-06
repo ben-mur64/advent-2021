@@ -15,7 +15,6 @@ def mark(board, num):
                 board[i][j] = 'x'
 
 def score(board, num):
-    print(board)
     total = 0
     for i in range(0, len(board)):
         for j in range(0, len(board[i])):
@@ -34,10 +33,32 @@ def check(board, num):
 
     return False, 0
 
+# Part 1
 for num in nums:
     for board in boards:
         mark(board, num)
         win, val = check(board, num)
         if win:
             print(val)
-            exit()
+            break
+    else:
+        continue
+    break
+
+# Part 2
+
+win = False
+val = 0
+btr = []
+for num in nums:
+    for b in reversed(btr):
+        boards.pop(b)
+    if len(boards) == 0:
+        print(val)
+        exit()
+    btr = []
+    for i in range(len(boards)):
+        mark(boards[i], num)
+        win, val = check(boards[i], num)
+        if win:
+            btr.append(i)
