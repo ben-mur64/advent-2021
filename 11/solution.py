@@ -1,5 +1,7 @@
+import copy
+
 data = [[int(y) for y in x.strip()] for x in open('input.txt').readlines() if x]
-mat = data
+mat = copy.deepcopy(data)
 total = 0
 
 
@@ -61,8 +63,17 @@ def flasher(mat):
             if mat[i][j] == 10:
                 flash(mat, i, j)
 
+# Part 1
 for step in range(100):
     tick(mat)
     flasher(mat)
 
 print(total)
+
+total = 0
+mat = copy.deepcopy(data)
+for step in range(1000):
+    tick(mat)
+    flasher(mat)
+    if all([all(val == 0 for val in row) for row in mat]):
+        print(step + 1)
